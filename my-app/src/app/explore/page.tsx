@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Streak from '../components/Streak';
 
 interface Option {
   name: string;
@@ -149,6 +150,14 @@ const Explore: React.FC = () => {
           Vote recorded successfully!
         </div>
       )}
+
+      <div className='fixed ml-[1200px] bottom-[400px]'>
+      <Streak totalPY={0} setTotalPY={function (amount: number): void {
+          
+        } }/>
+        
+
+      </div>
     </div>
   );
 };
