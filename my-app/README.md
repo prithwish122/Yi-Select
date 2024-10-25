@@ -2,6 +2,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+## Add Contract Address YSL to wallet build on AIA CHAIN
+
+Contract Address = "0x4012e2e421631aD769cf2571c121A9A81e4fd1B1"
+
+[Verify Here]("https://testnet.aiascan.com/token/0x4012e2e421631aD769cf2571c121A9A81e4fd1B1")
+
 First, run the development server:
 
 ```bash

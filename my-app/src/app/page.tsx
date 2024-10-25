@@ -69,7 +69,7 @@ const HomePage: FC = () => {
           </p>
           <Link href="/create-topic">
             <button className="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300">
-              Create
+              CREATE
             </button>
           </Link>
         </div>
@@ -84,7 +84,7 @@ const HomePage: FC = () => {
           </p>
           <Link href="/explore">
             <button className="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300">
-              EXPLORE Here
+              EXPLORE
             </button>
           </Link>
         </div>
