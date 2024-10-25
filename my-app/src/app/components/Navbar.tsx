@@ -93,7 +93,7 @@ const Navbar: React.FC = () => {
         ref={logoRef}
         className="flex items-center font-bold text-3xl text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500"
       >
-        <Link href="/home">Yì Select</Link>
+        <Link href="/">Yì Select</Link>
       </div>
 
       <div className="flex items-center space-x-4 relative">

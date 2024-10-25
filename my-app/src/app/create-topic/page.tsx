@@ -1,6 +1,8 @@
 "use client"
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import yslTok from '../contractInfo/yslTok.json'
+import { BrowserProvider, ethers } from "ethers";
 
 const CreateVote: React.FC = () => {
     const router = useRouter();
@@ -8,7 +10,7 @@ const CreateVote: React.FC = () => {
     const [topic, setTopic] = useState<string>('');
     const [options, setOptions] = useState<string[]>(['', '']); // Two initial options
     const [showPopup, setShowPopup] = useState<boolean>(false);
-
+    
     const handleOptionChange = (index: number, value: string) => {
         const newOptions = [...options];
         newOptions[index] = value;
@@ -22,12 +24,27 @@ const CreateVote: React.FC = () => {
     const handleCreateVote = () => {
         // Show confirmation popup
         setShowPopup(true);
+        console.log("")
     };
 
-    const handleConfirmCreateVote = () => {
+    const handleConfirmCreateVote = async () => {
+        const claimAmt = 1;
+        const contractAddress = "0x4012e2e421631aD769cf2571c121A9A81e4fd1B1"
+        const provider = new BrowserProvider(window.ethereum);
+    
+        const signer = await provider.getSigner();
+        const address = await signer.getAddress();
+        console.log("Wallet Address:", address);
+        const humorTokenContract = new ethers.Contract(contractAddress, yslTok.abi, signer)
+        // mint();
+        console.log(claimAmt, "========inside withdraw===")
+    
+        await (await humorTokenContract.donate(address,"0x94A7Af5edB47c3B91d1B4Ffc2CA535d7aDA8CEDe" ,ethers.parseUnits(claimAmt.toString(), 18))).wait();
+    
+
         // Create vote logic (could include validation)
         const formattedOptions = options.map(option => ({ name: option, percentage: 0 })); // Ensure each option has name and percentage
-    
+        
         const newVote = { title, topic, options: formattedOptions };
     
         // Redirect to Explore page with newVote data as query parameter
@@ -96,7 +113,7 @@ const CreateVote: React.FC = () => {
             {showPopup && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 text-black">
                     <div className="bg-white rounded-lg p-6 shadow-lg">
-                        <h2 className="text-xl font-semibold mb-4">Are you sure to continue? This would require 10 PY.</h2>
+                        <h2 className="text-xl font-semibold mb-4">Are you sure to continue? This would require 1 YSL.</h2>
                         <div className="flex justify-between">
                             <button
                                 onClick={handleConfirmCreateVote}

@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Streak from '../components/Streak';
+import questTok from '../contractInfo/yslTok.json'
+import { BrowserProvider, ethers } from 'ethers';
 
 interface Option {
   name: string;
@@ -75,9 +77,23 @@ const Explore: React.FC = () => {
     setShowPopup(true);
   };
 
-  const handleVote = () => {
+  const handleVote = async () => {
     // Show confirmation that voting requires 10 QF
-    if (window.confirm("This vote requires 10 PY. Do you want to proceed?")) {
+    if (window.confirm("This vote requires 1 YSL. Do you want to proceed?")) {
+
+      const claimAmt = 1;
+      const contractAddress = "0x4012e2e421631aD769cf2571c121A9A81e4fd1B1"
+      const provider = new BrowserProvider(window.ethereum);
+  
+      const signer = await provider.getSigner();
+      const address = await signer.getAddress();
+      console.log("Wallet Address:", address);
+      const humorTokenContract = new ethers.Contract(contractAddress, questTok.abi, signer)
+      // mint();
+      console.log(claimAmt, "========inside withdraw===")
+  
+      await (await humorTokenContract.donate(address,"0x94A7Af5edB47c3B91d1B4Ffc2CA535d7aDA8CEDe" ,ethers.parseUnits(claimAmt.toString(), 18))).wait();
+  
       setVoteSuccess(true);
       setShowPopup(false);
     }
