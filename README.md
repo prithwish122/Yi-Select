@@ -6,7 +6,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 Contract Address = "0x4012e2e421631aD769cf2571c121A9A81e4fd1B1"
 
-[Verify Here]("https://testnet.aiascan.com/token/0x4012e2e421631aD769cf2571c121A9A81e4fd1B1")
+[Verify_Here](https://testnet.aiascan.com/token/0x4012e2e421631aD769cf2571c121A9A81e4fd1B1)
 
 First, run the development server:
 
